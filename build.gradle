@@ -1,4 +1,4 @@
-group 'biz.grundner'
+group 'biz.jovido'
 version '1.0-SNAPSHOT'
 
 buildscript {
