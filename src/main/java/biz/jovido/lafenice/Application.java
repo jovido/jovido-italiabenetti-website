@@ -4,7 +4,8 @@ import biz.jovido.seed.configuration.EnableSeed;
 import biz.jovido.seed.configuration.WebSecurityConfiguration;
 import biz.jovido.seed.content.Configurer;
 import biz.jovido.seed.content.HierarchyService;
-import biz.jovido.seed.content.TypeService;
+import biz.jovido.seed.content.StructureService;
+import biz.jovido.seed.content.HostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -40,19 +41,36 @@ public class Application {
     private void prepare() {
 
         HierarchyService hierarchyService = applicationContext.getBean(HierarchyService.class);
-        TypeService typeService = applicationContext.getBean(TypeService.class);
+        StructureService structureService = applicationContext.getBean(StructureService.class);
 
-        new Configurer(hierarchyService, typeService)
-                .forHierarchy("primaryMenu")
-                .forType("basicPage", 1).setPublishable(true)
+        new Configurer(hierarchyService, structureService)
+                .createHierarchy("primaryMenu")
+
+                .createStructure("carouselItem")
+                    .addImageAttribute("image")
                     .addTextAttribute("title")
-                        .setRequired(1)
-                        .setCapacity(1)
+                    .addTextAttribute("subtitle")
+                .createStructure("carouselSection")
+                    .addItemAttribute("carouselItems").setCapacity(5)
+                        .addAcceptedStructure("carouselItem")
+
+                .createStructure("highlightSection")
+                    .addTextAttribute("title")
                     .addTextAttribute("text")
-                        .setRequired(1)
-                        .setCapacity(1)
-                        .setMultiline(true)
+
+                .createStructure("sectionsPage").setPublishable(true)
+                    .addTextAttribute("title")
+                    .addItemAttribute("sections").setCapacity(Integer.MAX_VALUE)
+                        .addAcceptedStructure("carouselSection")
+                        .addAcceptedStructure("highlightSection")
+
                 .apply();
+
+
+        HostService hostService = applicationContext.getBean(HostService.class);
+
+        hostService.getOrCreateHost("localhost");
+
 
     }
 
