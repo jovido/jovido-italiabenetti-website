@@ -60,4 +60,10 @@ dependencies {
 //    compile group: 'org.slf4j', authority: 'slf4j-api', version: '1.7.10'
 }
 
+springBoot {
+    executable = true
+}
 
+jar {
+    archiveName = "lafenice.${extension}"
+}
