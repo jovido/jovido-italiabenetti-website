@@ -2,14 +2,14 @@
 
 <th:block th:fragment="main">
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>basicPage <small th:text="${_item.id}">#</small></h1>
-                [[${title[0]}]]
-            </div>
-        </div>
-    </div>
+    <!--<div class="container">-->
+        <!--<div class="row">-->
+            <!--<div class="col-md-12">-->
+                <!--<h1>basicPage <small th:text="${_item.id}">#</small></h1>-->
+                <!--[[${title[0]}]]-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
 
     <th:block th:each="section : ${sections}">
         <th:block seed:replace="${section}" />

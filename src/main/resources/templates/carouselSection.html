@@ -26,11 +26,21 @@
                         </div>
                         <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.9s">
                             <form class="form-inline">
-                                <div class="form-group">
-                                    <button type="livedemo" name="Live Demo" class="btn btn-primary btn-lg" required="required">Live Demo</button>
+                                <div class="form-group" th:if="${carouselItem[button]?.size() >= 1}">
+                                    <button type="livedemo"
+                                            th:text="${carouselItem[button][0].text}"
+                                            th:data-url="${carouselItem[button][0].uri}"
+                                            name="Live Demo"
+                                            class="btn btn-primary btn-lg url-button"
+                                            required="required">Live Demo</button>
                                 </div>
-                                <div class="form-group">
-                                    <button type="getnow" name="Get Now" class="btn btn-primary btn-lg" required="required">Get Now</button>
+                                <div class="form-group" th:if="${carouselItem[button]?.size() >= 2}">
+                                    <button type="getnow"
+                                            th:text="${carouselItem[button][1].text}"
+                                            th:data-url="${carouselItem[button][1].uri}"
+                                            name="Get Now"
+                                            class="btn btn-primary btn-lg url-button"
+                                            required="required">Get Now</button>
                                 </div>
                             </form>
                         </div>

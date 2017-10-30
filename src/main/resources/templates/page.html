@@ -27,12 +27,19 @@
 					<div class="container-fluid">
 						<div class="navbar-header">
 							<div class="navbar-brand">
-								<a href="index.html"><h1>Resi</h1></a>
+								<a href="/">
+									<h1 th:text="'FENICESFA'">Resi</h1>
+								</a>
 							</div>
 						</div>
-						<div class="menu" th:with="hierarchy = ${@hierarchyService.getHierarchy('primaryMenu')}">
+						<div class="menu" th:with="hierarchy = ${@hierarchyService.getHierarchy('primaryMenu')}" style="min-height:93px;">
 							<ul class="nav nav-tabs" role="tablist">
-								<li th:each="node : ${@hierarchyService.getRootNodes(hierarchy)}" role="presentation">
+								<!--<li role="presentation" class="active">-->
+									<!--<a href="/">HOME</a>-->
+								<!--</li>-->
+								<li th:each="node : ${@hierarchyService.getRootNodes(hierarchy)}"
+									th_class="${_node.id == node.leaf.current.id}"
+									role="presentation">
 									<!--<a href="feature.html">Feature</a>-->
 
 									<a th:href="@{/item(leaf=${node.leaf.id})}" >
@@ -130,6 +137,14 @@
 	<script src="js/responsive-slider.js"></script>
 	<script src="js/wow.min.js"></script>
 	<script>wow = new WOW({}).init();</script>
-    
+    <script>
+		$(document).ready(function() {
+			$('.url-button').click(function() {
+				var url = $(this).data('url');
+				window.location=url;
+				return false;
+			});
+		});
+	</script>
 </body>
 </html>
