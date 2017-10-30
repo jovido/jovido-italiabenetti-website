@@ -1,4 +1,4 @@
-package biz.jovido.lafenice;
+package biz.jovido.fenicesfa;
 
 import biz.jovido.seed.configuration.EnableSeed;
 import biz.jovido.seed.configuration.WebSecurityConfiguration;
@@ -25,7 +25,7 @@ import javax.annotation.PostConstruct;
  */
 @EnableSeed
 @SpringBootApplication
-@EntityScan("biz.jovido.lafenice")
+@EntityScan("biz.jovido.fenicesfa")
 @Import(WebSecurityConfiguration.class)
 public class Application {
 
@@ -46,6 +46,7 @@ public class Application {
         new Configurer(hierarchyService, structureService)
                 .createHierarchy("primaryMenu")
 
+                // Carousel section/item
                 .createStructure("carouselItem")
                     .addImageAttribute("image")
                     .addTextAttribute("title")
@@ -54,15 +55,42 @@ public class Application {
                     .addItemAttribute("carouselItems").setCapacity(5)
                         .addAcceptedStructure("carouselItem")
 
+                // Highlight section
                 .createStructure("highlightSection")
                     .addTextAttribute("title")
-                    .addTextAttribute("text")
+                    .addTextAttribute("text").setCapacity(3)
+                        .setMultiline(true)
 
+                // Devider section
+                .createStructure("dividerSection")
+                    .addTextAttribute("text")
+                        .setMultiline(true)
+
+                // Feature list section
+                .createStructure("featureListItem")
+                    .addTextAttribute("heading")
+                    .addTextAttribute("description")
+                        .setMultiline(true)
+                .createStructure("featureListSection")
+                    .addImageAttribute("image")
+                    .addTextAttribute("title")
+                    .addTextAttribute("text")
+                        .setMultiline(true)
+                    .addItemAttribute("featureListItems")
+                        .addAcceptedStructure("featureListItem")
+                    .addBooleanAttribute("rtl")
+
+                // Sections page
                 .createStructure("sectionsPage").setPublishable(true)
                     .addTextAttribute("title")
+                    .addTextAttribute("subtitle")
+                        .setRequired(1)
+                        .setCapacity(3)
                     .addItemAttribute("sections").setCapacity(Integer.MAX_VALUE)
                         .addAcceptedStructure("carouselSection")
                         .addAcceptedStructure("highlightSection")
+                        .addAcceptedStructure("dividerSection")
+                        .addAcceptedStructure("featureListSection")
 
                 .apply();
 
@@ -70,8 +98,7 @@ public class Application {
         HostService hostService = applicationContext.getBean(HostService.class);
 
         hostService.getOrCreateHost("localhost");
-
-
+        hostService.getOrCreateHost("fenicesfa.it");
     }
 
     @PostConstruct
