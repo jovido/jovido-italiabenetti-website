@@ -6,13 +6,20 @@ import biz.jovido.seed.content.Configurer;
 import biz.jovido.seed.content.HierarchyService;
 import biz.jovido.seed.content.StructureService;
 import biz.jovido.seed.content.HostService;
+import org.apache.catalina.connector.Connector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionTemplate;
@@ -37,6 +44,24 @@ public class Application {
 
     @Autowired
     private ApplicationContext applicationContext;
+
+    @Bean
+    @Scope("prototype")
+    @ConfigurationProperties(prefix = "server.ajp", ignoreInvalidFields = true)
+    protected Connector ajpConnector() {
+        return new Connector("AJP/1.3");
+    }
+
+    @Bean
+    @ConditionalOnProperty(name = "server.ajp.port")
+    public EmbeddedServletContainerCustomizer servletContainerCustomizer(Connector ajpConnector) {
+        return container -> {
+            if (container instanceof TomcatEmbeddedServletContainerFactory) {
+                ((TomcatEmbeddedServletContainerFactory) container)
+                        .addAdditionalTomcatConnectors(ajpConnector);
+            }
+        };
+    }
 
     private void prepare() {
 
