@@ -95,7 +95,7 @@ public class Application {
                         .addAcceptedStructure("highlightSection")
                         .addAcceptedStructure("dividerSection")
                         .addAcceptedStructure("featureListSection")
-
+                    .setLabelAttribute("title")
                 .apply();
 
 
