@@ -111,7 +111,7 @@ public class Application {
                 // Sections page
                 .createStructure("sectionsPage").setPublishable(true)
                     .addTextAttribute("title")
-                    .addIconAttribute("icon1").setCapacity(2)
+//                    .addIconAttribute("icon1").setCapacity(2)
                     .addTextAttribute("subtitle")
                         .setRequired(1)
                         .setCapacity(3)
