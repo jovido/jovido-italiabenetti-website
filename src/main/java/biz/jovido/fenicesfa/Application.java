@@ -33,7 +33,6 @@ import javax.annotation.PostConstruct;
 @EnableSeed
 @SpringBootApplication
 @EntityScan("biz.jovido.fenicesfa")
-@Import(WebSecurityConfiguration.class)
 public class Application {
 
     public static void main(String[] args) {
@@ -112,6 +111,7 @@ public class Application {
                 // Sections page
                 .createStructure("sectionsPage").setPublishable(true)
                     .addTextAttribute("title")
+                    .addIconAttribute("icon1").setCapacity(2)
                     .addTextAttribute("subtitle")
                         .setRequired(1)
                         .setCapacity(3)
