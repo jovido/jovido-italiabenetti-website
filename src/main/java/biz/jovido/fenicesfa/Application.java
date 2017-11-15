@@ -1,11 +1,10 @@
 package biz.jovido.fenicesfa;
 
 import biz.jovido.seed.configuration.EnableSeed;
-import biz.jovido.seed.configuration.WebSecurityConfiguration;
 import biz.jovido.seed.content.Configurer;
 import biz.jovido.seed.content.HierarchyService;
 import biz.jovido.seed.content.StructureService;
-import biz.jovido.seed.content.HostService;
+import biz.jovido.seed.net.HostService;
 import org.apache.catalina.connector.Connector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -18,7 +17,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
@@ -104,14 +102,14 @@ public class Application {
                     .addTextAttribute("text")
                         .setMultiline(true)
                     .addLinkAttribute("link")
-                    .addItemAttribute("featureListItems")
+                    .addItemAttribute("featureListItems").setCapacity(5)
                         .addAcceptedStructure("featureListItem")
-                    .addBooleanAttribute("rtl")
+                    .addYesNoAttribute("rtl")
 
                 // Sections page
                 .createStructure("sectionsPage").setPublishable(true)
                     .addTextAttribute("title")
-//                    .addIconAttribute("icon1").setCapacity(2)
+                    .addIconAttribute("icon").setCapacity(2)
                     .addTextAttribute("subtitle")
                         .setRequired(1)
                         .setCapacity(3)
