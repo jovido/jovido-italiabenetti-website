@@ -4,7 +4,7 @@ import biz.jovido.seed.configuration.EnableSeed;
 import biz.jovido.seed.content.Configurer;
 import biz.jovido.seed.content.HierarchyService;
 import biz.jovido.seed.content.StructureService;
-import biz.jovido.seed.net.HostService;
+import biz.jovido.seed.content.HostService;
 import org.apache.catalina.connector.Connector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -109,10 +109,7 @@ public class Application {
                 // Sections page
                 .createStructure("sectionsPage").setPublishable(true)
                     .addTextAttribute("title")
-                    .addIconAttribute("icon").setCapacity(2)
                     .addTextAttribute("subtitle")
-                        .setRequired(1)
-                        .setCapacity(3)
                     .addItemAttribute("sections").setCapacity(Integer.MAX_VALUE)
                         .addAcceptedStructure("carouselSection")
                         .addAcceptedStructure("highlightSection")
