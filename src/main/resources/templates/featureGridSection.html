@@ -1,0 +1,24 @@
+<html xmlns:th="//www.thymeleaf.org" th:remove="tag">
+<div class="container">
+    <div class="row">
+        <div class="boxs">
+            <div th:each="featureGridItem : ${featureGridItems}" class="col-md-4">
+                <div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.8s">
+                    <div class="align-center">
+                        <h4 th:text="${featureGridItem.heading[0].value}">Quick Support</h4>
+                        <div class="icon">
+                            <i class="fa fa-3x" th:classappend="${featureGridItem.icon[0].code}"></i>
+                        </div>
+                        <p th:utext="${featureGridItem.description[0].value}">
+                            Voluptatem accusantium doloremque laudantium sprea totam rem aperiam.
+                        </p>
+                        <div class="ficon">
+                            <a th:href="${featureGridItem.link[0].url}" alt="" th:text="${featureGridItem.link[0].value}">Learn more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

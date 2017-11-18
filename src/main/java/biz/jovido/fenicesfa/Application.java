@@ -91,6 +91,17 @@ public class Application {
                     .addTextAttribute("text")
                         .setMultiline(true)
 
+                // Feature grid section
+                .createStructure("featureGridItem")
+                    .addTextAttribute("heading")
+                    .addIconAttribute("icon")
+                    .addTextAttribute("description")
+                        .setMultiline(true)
+                    .addLinkAttribute("link")
+                .createStructure("featureGridSection")
+                    .addItemAttribute("featureGridItems").setCapacity(6)
+                        .addAcceptedStructure("featureGridItem")
+
                 // Feature list section
                 .createStructure("featureListItem")
                     .addTextAttribute("heading")
@@ -115,6 +126,7 @@ public class Application {
                         .addAcceptedStructure("highlightSection")
                         .addAcceptedStructure("dividerSection")
                         .addAcceptedStructure("featureListSection")
+                        .addAcceptedStructure("featureGridSection")
                     .setLabelAttribute("title")
                 .apply();
 
