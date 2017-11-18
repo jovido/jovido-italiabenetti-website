@@ -29,7 +29,7 @@
                                 <div class="form-group" th:if="${carouselItem[button]?.size() >= 1}">
                                     <button type="livedemo"
                                             th:text="${carouselItem[button][0]?.value}"
-                                            th:data-url="${carouselItem[button][0]?.uri}"
+                                            th:data-url="${carouselItem[button][0]?.url}"
                                             name="Live Demo"
                                             class="btn btn-primary btn-lg url-button"
                                             required="required">Live Demo</button>
@@ -37,7 +37,7 @@
                                 <div class="form-group" th:if="${carouselItem[button]?.size() >= 2}">
                                     <button type="getnow"
                                             th:text="${carouselItem[button][1]?.value}"
-                                            th:data-url="${carouselItem[button][1]?.uri}"
+                                            th:data-url="${carouselItem[button][1]?.url}"
                                             name="Get Now"
                                             class="btn btn-primary btn-lg url-button"
                                             required="required">Get Now</button>
