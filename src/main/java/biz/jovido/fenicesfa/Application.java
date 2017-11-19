@@ -4,7 +4,7 @@ import biz.jovido.seed.configuration.EnableSeed;
 import biz.jovido.seed.content.Configurer;
 import biz.jovido.seed.content.HierarchyService;
 import biz.jovido.seed.content.StructureService;
-import biz.jovido.seed.content.HostService;
+import biz.jovido.seed.net.HostService;
 import org.apache.catalina.connector.Connector;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
@@ -91,6 +91,16 @@ public class Application {
                     .addTextAttribute("text")
                         .setMultiline(true)
 
+                // Simple grid section
+                .createStructure("simpleGridItem")
+                    .addImageAttribute("image")
+                    .addTextAttribute("text")
+                        .setMultiline(true)
+//                    .addLinkAttribute("link")
+                .createStructure("simpleGridSection")
+                    .addItemAttribute("simpleGridItems").setCapacity(8)
+                        .addAcceptedStructure("simpleGridItem")
+
                 // Feature grid section
                 .createStructure("featureGridItem")
                     .addTextAttribute("heading")
@@ -127,6 +137,7 @@ public class Application {
                         .addAcceptedStructure("dividerSection")
                         .addAcceptedStructure("featureListSection")
                         .addAcceptedStructure("featureGridSection")
+                        .addAcceptedStructure("simpleGridSection")
                     .setLabelAttribute("title")
                 .apply();
 
