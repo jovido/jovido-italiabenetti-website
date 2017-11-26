@@ -84,8 +84,12 @@ public class Application {
                     .addTextAttribute("text").setCapacity(3).setMultiline(true)
 
                 // Devider section
-                .createStructure("dividerSection").setNestedOnly(true)
+                .createStructure("textOnlySection").setNestedOnly(true)
                     .addTextAttribute("text").setMultiline(true)
+
+                // Devider section
+                .createStructure("dividerSection").setNestedOnly(true)
+                    .addTextAttribute("text")
 
                 // Simple grid section
                 .createStructure("simpleGridItem").setNestedOnly(true)
@@ -109,11 +113,9 @@ public class Application {
                 .createStructure("featureListItem").setNestedOnly(true)
                     .addTextAttribute("heading")
                     .addTextAttribute("description").setMultiline(true)
+                    .addLinkAttribute("link")
                 .createStructure("featureListSection").setNestedOnly(true)
                     .addImageAttribute("image")
-                    .addTextAttribute("title")
-                    .addTextAttribute("text").setMultiline(true)
-                    .addLinkAttribute("link")
                     .addItemAttribute("featureListItems").setCapacity(5)
                         .addAcceptedStructure("featureListItem")
                     .addYesNoAttribute("rtl")
@@ -125,6 +127,7 @@ public class Application {
                     .addItemAttribute("sections").setCapacity(Integer.MAX_VALUE)
                         .addAcceptedStructure("carouselSection")
                         .addAcceptedStructure("highlightSection")
+                        .addAcceptedStructure("textOnlySection")
                         .addAcceptedStructure("dividerSection")
                         .addAcceptedStructure("featureListSection")
                         .addAcceptedStructure("featureGridSection")
