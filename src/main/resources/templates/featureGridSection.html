@@ -3,8 +3,8 @@
     <div class="row">
         <div class="boxs">
             <div th:each="featureGridItem : ${featureGridItems}" class="col-md-4">
-                <div class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.8s">
-                    <div class="align-center">
+                <a th:href="${featureGridItem.link[0].url}" class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.8s">
+                    <div class="align-center" >
                         <h4 th:text="${featureGridItem.heading[0].value}">Quick Support</h4>
                         <div class="icon">
                             <i class="fa fa-3x" th:classappend="${featureGridItem.icon[0].code}"></i>
@@ -13,10 +13,10 @@
                             Voluptatem accusantium doloremque laudantium sprea totam rem aperiam.
                         </p>
                         <div class="ficon">
-                            <a th:href="${featureGridItem.link[0].url}" alt="" th:text="${featureGridItem.link[0].value}">Learn more</a>
+                            <span th_href="${featureGridItem.link[0].url}" alt="" th:text="${featureGridItem.link[0].value}">Learn more</span>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </div>
