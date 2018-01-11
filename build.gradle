@@ -40,11 +40,11 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test')
 
-//    if (jenkins) {
+    if (jenkins) {
         compile("biz.jovido:jovido-webseed-fenicesfa:0.0.1") { changing = true }
-//    } else {
-//        compile project(":jovido-webseed")
-//    }
+    } else {
+        compile project(":jovido-webseed-fenicesfa")
+    }
 
     compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web')
     compile(group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa')
