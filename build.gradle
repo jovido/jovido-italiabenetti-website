@@ -28,6 +28,9 @@ repositories {
     maven {
         url "https://oss.sonatype.org/content/repositories/snapshots"
     }
+    maven {
+        url "https://repo1.maven.org/maven2"
+    }
 }
 
 def jenkins = System.properties['build.jenkins']
@@ -37,11 +40,11 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test')
 
-    if (jenkins) {
-        compile("biz.jovido:jovido-webseed:0.0.1-SNAPSHOT") { changing = true }
-    } else {
-        compile project(":jovido-webseed")
-    }
+//    if (jenkins) {
+        compile("biz.jovido:jovido-webseed-fenicesfa:0.0.1") { changing = true }
+//    } else {
+//        compile project(":jovido-webseed")
+//    }
 
     compile(group: 'org.springframework.boot', name: 'spring-boot-starter-web')
     compile(group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa')
