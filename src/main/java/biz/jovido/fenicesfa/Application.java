@@ -1,6 +1,6 @@
 package biz.jovido.fenicesfa;
 
-import biz.jovido.ui.configuration.EnableSeed;
+import biz.jovido.seed.configuration.EnableSeed;
 import biz.jovido.seed.content.Configurer;
 import biz.jovido.seed.content.HierarchyService;
 import biz.jovido.seed.content.StructureService;
