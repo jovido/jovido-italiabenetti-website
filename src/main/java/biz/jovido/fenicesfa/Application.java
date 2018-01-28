@@ -105,6 +105,7 @@ public class Application {
                     .addIconAttribute("icon")
                     .addTextAttribute("description").setMultiline(true)
                     .addLinkAttribute("link")
+                    .addYesNoAttribute("blank")
                 .createStructure("featureGridSection").setNestedOnly(true)
                     .addItemAttribute("featureGridItems").setCapacity(6)
                         .addAcceptedStructure("featureGridItem")

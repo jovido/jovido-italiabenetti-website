@@ -15,7 +15,10 @@
                     <!--<img th:src="@{/asset/files/{uuid}/{filename}(uuid=${stage.image[0].uuid},fileName=${stage.image[0].fileName})}" class="img-responsive" alt="">-->
 
                     <img th:src="${carouselItem[image][0][url]}" class="img-responsive" alt="">
-                    <div class="carousel-caption">
+                    <div class="carousel-caption"
+                         th:remove="
+                         ${#strings.isEmpty(carouselItem[title][0]?.value) &&
+                           #strings.isEmpty(carouselItem[subtitle][0]?.value)} ? all : _">
                         <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s" th:if="${!carouselItem[title].empty}">
                             <h2><span th:text="${carouselItem[title][0]?.value}">Clean & Modern Design Template</span></h2>
                         </div>
@@ -45,8 +48,6 @@
                             </form>
                         </div>
                     </div>
-
-
                 </div>
 
             </div>

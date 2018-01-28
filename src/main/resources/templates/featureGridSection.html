@@ -1,23 +1,32 @@
 <html xmlns:th="//www.thymeleaf.org" th:remove="tag">
 <div class="container">
     <div class="row">
-        <div class="boxs">
-            <div th:each="featureGridItem : ${featureGridItems}" class="col-md-4">
-                <a th:href="${featureGridItem.link[0].url}" class="wow bounceIn" data-wow-offset="0" data-wow-delay="0.8s">
-                    <div class="align-center" >
+        <div class="boxs" th:with="
+        size=${featureGridItems.size()},
+        cols=${size <= 3 ? (12/size) : 4}">
+            <div th:each="featureGridItem : ${featureGridItems}" th:class="col-md-__${cols}__">
+
+                <a th:href="${featureGridItem.link[0].url}"
+                   th:target="${featureGridItem.blank[0]?.value} ? _blank : _self"
+                   class="wow bounceIn"
+                   data-wow-offset="0"
+                   data-wow-delay="0.8s">
+                    <div class="align-center">
                         <h4 th:text="${featureGridItem.heading[0].value}">Quick Support</h4>
                         <div class="icon">
                             <i class="fa fa-3x" th:classappend="${featureGridItem.icon[0].code}"></i>
                         </div>
-                        <p th:utext="${featureGridItem.description[0].value}">
+                        <span class="text-container" th:utext="${featureGridItem.description[0].value}">
                             Voluptatem accusantium doloremque laudantium sprea totam rem aperiam.
-                        </p>
+                        </span>
                         <div class="ficon">
-                            <span th_href="${featureGridItem.link[0].url}" alt="" th:text="${featureGridItem.link[0].value}">Learn more</span>
+                            <span th:text="${featureGridItem.link[0].value}">Learn more</span>
                         </div>
                     </div>
                 </a>
+
             </div>
+
         </div>
     </div>
 </div>
