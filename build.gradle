@@ -41,7 +41,7 @@ dependencies {
     testCompile(group: 'org.springframework.boot', name: 'spring-boot-starter-test')
 
     if (jenkins) {
-        compile("biz.jovido:jovido-webseed-fenicesfa:0.0.1") { changing = true }
+        compile("biz.jovido:jovido-webseed-fenicesfa:0.0.1-SNAPSHOT") { changing = true }
     } else {
         compile project(":jovido-webseed-fenicesfa")
     }
