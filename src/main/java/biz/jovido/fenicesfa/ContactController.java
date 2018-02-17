@@ -32,13 +32,13 @@ public class ContactController {
         return new ContactForm();
     }
 
-    @GetMapping(path = "/contact")
+    @GetMapping(path = "/mail")
     protected String index(@ModelAttribute ContactForm form) {
 
         return "contact";
     }
 
-    @PostMapping(path = "/contact")
+    @PostMapping(path = "/mail")
     protected String sent(@Valid @ModelAttribute ContactForm form,
                           BindingResult bindingResult,
                           Model model,
