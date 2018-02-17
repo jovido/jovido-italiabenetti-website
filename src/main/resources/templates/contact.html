@@ -2,14 +2,20 @@
 <th:block th:fragment="main">
 
 
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1>Contatto</h1>
+
+            </div>
+        </div>
+    </div>
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
 
-            <h1>Contatto</h1>
-
-            <form action="" method="post" role="form" class="contactForm" th:action="@{contatti}" th:object="${contactForm}">
+            <form action="" method="post" role="form" class="contactForm" th:action="@{contact}" th:object="${contactForm}">
 
                 <div class="alert alert-success" role="alert" th:if="${contactForm.sent}">
                     Thnx!
@@ -53,8 +59,22 @@
             </form>
 
         </div>
+        <div class="col-lg-6">
+
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2793.332850154795!2d11.538840515828278!3d45.56374473481624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f33c13985eaf3%3A0xda74de736765fce2!2sOnoranze+Funebri+Scuderi!5e0!3m2!1sde!2sat!4v1518866732924" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+
+
     </div>
+
 </div>
+
+    <div class="content">
+        <h2><span>FENICE</span></h2>
+        <span class="text-container"><p style="text-align: center;">di Scuderi Francesco<br>Onoranze Funebri per animali<br>Via Mentana, 106<br>36100 Vicenza</p><p style="text-align: center;">cell. 335 526 1937<br>fax 0444 14 44 318<br><a href="mailto:info@fenicesfa.it" target="_blank">info@fenicesfa.it</a></p><p style="text-align: center;"><br>P.IVA 03749840249</p></span>
+    </div>
+
 
 </th:block>
 
