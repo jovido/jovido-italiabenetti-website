@@ -78,6 +78,11 @@
                                     </a>
                                 </th:block>
                             </li>
+
+                            <li role="presentation"
+                                th:class="${#strings.equalsIgnoreCase(#request.getRequestURI().toString(), '/CONTATTI')} ? active : _">
+                                <a href="/contatti">CONTATTI</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -3,6 +3,7 @@ package biz.jovido.fenicesfa;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.annotation.Order;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
@@ -31,13 +32,13 @@ public class ContactController {
         return new ContactForm();
     }
 
-    @GetMapping(path = "/contact")
+    @GetMapping(path = "/contatti")
     protected String index(@ModelAttribute ContactForm form) {
 
         return "contact";
     }
 
-    @PostMapping(path = "/contact")
+    @PostMapping(path = "/contatti")
     protected String sent(@Valid @ModelAttribute ContactForm form,
                           BindingResult bindingResult,
                           Model model,
@@ -64,6 +65,6 @@ public class ContactController {
             }
         }
 
-        return "contact";
+        return "contatti";
     }
 }
