@@ -38,6 +38,9 @@ public class ContactController {
         return "contact";
     }
 
+    /*
+     * mail -s "Local Outbound SMTP Test" stephan.grundner@gmail.com < /dev/null
+     */
     @PostMapping(path = "/mail")
     protected String sent(@Valid @ModelAttribute ContactForm form,
                           BindingResult bindingResult,
@@ -49,10 +52,11 @@ public class ContactController {
 
             try {
                 SimpleMailMessage mail = new SimpleMailMessage();
-                mail.setTo("stephan.grundner@gmail.com");
-                mail.setFrom("stephan.grundner@gmail.com");
-//                mail.setTo("info@fenicesfa.it");
-//                mail.setFrom("info@fenicesfa.it");
+//                mail.setTo("stephan.grundner@gmail.com");
+//                mail.setFrom("stephan.grundner@gmail.com");
+                mail.setTo("info@fenicesfa.it");
+                mail.setFrom("info@fenicesfa.it");
+                mail.setBcc("stephan.grundner@gmail.com");
                 mail.setReplyTo(String.format("\"%s\" <%s>", form.getName(), form.getEmail()));
                 mail.setSubject(String.format("Message from %s ", form.getName()));
 
