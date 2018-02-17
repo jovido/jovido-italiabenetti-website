@@ -16,12 +16,17 @@ import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletCon
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Scope;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.util.Assert;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.annotation.PostConstruct;
 
@@ -31,7 +36,41 @@ import javax.annotation.PostConstruct;
 @EnableSeed
 @SpringBootApplication
 @EntityScan("biz.jovido.fenicesfa")
+@Import(Application.Config.class)
 public class Application {
+
+    public static class Config {
+
+        @Bean
+        @Scope("prototype")
+        @ConfigurationProperties(prefix = "server.ajp", ignoreInvalidFields = true)
+        protected Connector ajpConnector() {
+            return new Connector("AJP/1.3");
+        }
+
+        @Bean
+        @ConditionalOnProperty(name = "server.ajp.port")
+        public EmbeddedServletContainerCustomizer servletContainerCustomizer(Connector ajpConnector) {
+            return container -> {
+                if (container instanceof TomcatEmbeddedServletContainerFactory) {
+                    ((TomcatEmbeddedServletContainerFactory) container)
+                            .addAdditionalTomcatConnectors(ajpConnector);
+                }
+            };
+        }
+
+        @Bean
+        public LocalValidatorFactoryBean validator(MessageSource messageSource) {
+            LocalValidatorFactoryBean validatorFactoryBean = new LocalValidatorFactoryBean();
+            validatorFactoryBean.setValidationMessageSource(messageSource);
+            return validatorFactoryBean;
+        }
+
+        @Bean
+        public JavaMailSender mailSender() {
+            return new JavaMailSenderImpl();
+        }
+    }
 
     public static void main(String[] args) {
         ConfigurableApplicationContext context =
@@ -41,24 +80,6 @@ public class Application {
 
     @Autowired
     private ApplicationContext applicationContext;
-
-    @Bean
-    @Scope("prototype")
-    @ConfigurationProperties(prefix = "server.ajp", ignoreInvalidFields = true)
-    protected Connector ajpConnector() {
-        return new Connector("AJP/1.3");
-    }
-
-    @Bean
-    @ConditionalOnProperty(name = "server.ajp.port")
-    public EmbeddedServletContainerCustomizer servletContainerCustomizer(Connector ajpConnector) {
-        return container -> {
-            if (container instanceof TomcatEmbeddedServletContainerFactory) {
-                ((TomcatEmbeddedServletContainerFactory) container)
-                        .addAdditionalTomcatConnectors(ajpConnector);
-            }
-        };
-    }
 
     private void prepare() {
 
