@@ -68,7 +68,7 @@
                             <!--<a href="/">HOME</a>-->
                             <!--</li>-->
                             <li th:each="node : ${hierarchy.rootNodes}"
-                                th:class="${this.belongsTo(node.leaf)} ? active : _"
+                                th:class="${this.belongsTo(node?.leaf)} ? active : _"
                                 role="presentation">
                                 <th:block th:with="item = ${@hierarchyService.getItem(node, mode)}">
                                     <!--<a href="feature.html">Feature</a>-->
@@ -81,7 +81,7 @@
 
                             <li role="presentation"
                                 th:class="${#strings.equalsIgnoreCase(#request.getRequestURI().toString(), '/CONTATTI')} ? active : _">
-                                <a href="/contatti">CONTATTI</a>
+                                <a href="/contact">CONTATTI</a>
                             </li>
                         </ul>
                     </div>
