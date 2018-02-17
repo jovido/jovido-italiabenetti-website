@@ -51,6 +51,8 @@ public class ContactController {
                 SimpleMailMessage mail = new SimpleMailMessage();
                 mail.setTo("stephan.grundner@gmail.com");
                 mail.setFrom("stephan.grundner@gmail.com");
+//                mail.setTo("info@fenicesfa.it");
+//                mail.setFrom("info@fenicesfa.it");
                 mail.setReplyTo(String.format("\"%s\" <%s>", form.getName(), form.getEmail()));
                 mail.setSubject(String.format("Message from %s ", form.getName()));
 
@@ -65,6 +67,6 @@ public class ContactController {
             }
         }
 
-        return "contatti";
+        return "contact";
     }
 }
