@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6">
-                <h1>Contatto</h1>
+                <h1>Contatti</h1>
 
             </div>
         </div>
@@ -47,7 +47,7 @@
                 <div class="form-group" th:classappend="${#fields.hasErrors('message')} ? has-error : _">
                     <textarea class="form-control" rows="5" th:field="*{message}" th:disabled="*{sent} ? disabled : _"
                               data-rule="required" data-msg="Please write something for us"
-                              placeholder="Messagio"></textarea>
+                              placeholder="Messaggio"></textarea>
                     <div class="validation"></div>
                 </div>
 
