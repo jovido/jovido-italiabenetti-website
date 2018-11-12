@@ -70,5 +70,5 @@ springBoot {
 }
 
 jar {
-    archiveName = "fenicesfa.${extension}"
+    archiveName = "italiabenetti.${extension}"
 }

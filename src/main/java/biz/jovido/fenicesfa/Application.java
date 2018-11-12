@@ -164,7 +164,7 @@ public class Application {
         HostService hostService = applicationContext.getBean(HostService.class);
 
         hostService.getOrCreateHost("localhost");
-        hostService.getOrCreateHost("fenicesfa.it");
+        hostService.getOrCreateHost("relaunch.italiabenetti.com");
     }
 
     @PostConstruct
