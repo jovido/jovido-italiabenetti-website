@@ -1,0 +1,83 @@
+<html th:replace="page(main=~{::main})" lang="en" th:remove="tag">
+<th:block th:fragment="main">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <h1>Contatto</h1>
+
+            </div>
+        </div>
+    </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+
+            <form action="" method="post" role="form" class="contactForm" th:action="@{mail}" th:object="${contactForm}">
+
+                <div class="alert alert-success" role="alert" th:if="${contactForm.sent}">
+                    Thnx!
+                </div>
+
+                <th:block th:if="${#fields.hasErrors('*')}">
+                    <div class="alert alert-danger" role="alert"
+                         th:each="err : ${#fields.errors('*')}"
+                         th:text="${err}">
+                        Error
+                    </div>
+                </th:block>
+
+                <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? has-error : _">
+                    <input type="text" class="form-control" th:field="*{name}" th:disabled="*{sent} ? disabled : _"
+                           placeholder="Nome o Ragione Sociale" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                    <div class="validation"></div>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? has-error : _">
+                    <input type="email" class="form-control" th:field="*{email}" th:disabled="*{sent} ? disabled : _"
+                           placeholder="E-Mail" data-rule="email" data-msg="Please enter a valid email">
+                    <div class="validation"></div>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('subject')} ? has-error : _">
+                    <input type="text" class="form-control" th:field="*{subject}" th:disabled="*{sent} ? disabled : _"
+                           placeholder="Oggetto" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject">
+                    <div class="validation"></div>
+                </div>
+                <div class="form-group" th:classappend="${#fields.hasErrors('message')} ? has-error : _">
+                    <textarea class="form-control" rows="5" th:field="*{message}" th:disabled="*{sent} ? disabled : _"
+                              data-rule="required" data-msg="Please write something for us"
+                              placeholder="Messagio"></textarea>
+                    <div class="validation"></div>
+                </div>
+
+                <input type="hidden" th:field="*{sent}">
+
+                <div class="text-center"><button type="submit" class="btn btn-default" th:disabled="*{sent} ? disabled : _">
+                    Invia il messaggio
+                </button></div>
+            </form>
+
+        </div>
+        <div class="col-lg-6">
+
+
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2793.332850154795!2d11.538840515828278!3d45.56374473481624!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477f33c13985eaf3%3A0xda74de736765fce2!2sOnoranze+Funebri+Scuderi!5e0!3m2!1sde!2sat!4v1518866732924" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+        </div>
+
+
+    </div>
+
+</div>
+
+    <div class="content">
+        <h2><span>FENICE</span></h2>
+        <span class="text-container"><p style="text-align: center;">di Scuderi Francesco<br>Onoranze Funebri per animali<br>Via Mentana, 106<br>36100 Vicenza</p><p style="text-align: center;">cell. 335 526 1937<br>fax 0444 14 44 318<br><a href="mailto:info@fenicesfa.it" target="_blank">info@fenicesfa.it</a></p><p style="text-align: center;"><br>P.IVA 03749840249</p></span>
+    </div>
+
+
+</th:block>
+
+
+
+</html>

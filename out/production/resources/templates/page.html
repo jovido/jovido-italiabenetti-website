@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>www.fenicesfa.it</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58240004-4"></script>
+    <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-58240004-4');
+
+    </script>
+
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/responsive-slider.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/animate.css">
+    <!--<link rel="stylesheet" href="css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="css/style.css" rel="stylesheet">
+    <!-- =======================================================
+        Theme Name: Resi
+        Theme URL: https://bootstrapmade.com/resi-free-bootstrap-html-template/
+        Author: BootstrapMade
+        Author URL: https://bootstrapmade.com
+    ======================================================= -->
+    <style type="text/css">
+        .content p {
+            margin-top:0 !important;
+            margin-bottom:0 !important;
+        }
+        .divider {
+                    margin-top:0 !important;
+            margin-bottom:0 !important;
+        }
+        .text-container a {
+            text-decoration: underline !important;
+        }
+        .underline {
+            text-decoration: underline !important;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <div class="row">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <div class="navbar-brand">
+                            <a href="/">
+                                <h1 th:text="'FENICESFA'">Resi</h1>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="menu" th:with="hierarchy = ${@hierarchyService.getHierarchy('primaryMenu')}"
+                         style="min-height:93px;">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <!--<li role="presentation" class="active">-->
+                            <!--<a href="/">HOME</a>-->
+                            <!--</li>-->
+                            <li th:each="node : ${hierarchy.rootNodes}"
+                                th:class="${this?.belongsTo(node?.leaf)} ? active : _"
+                                role="presentation">
+                                <th:block th:with="item = ${@hierarchyService.getItem(node, mode)}">
+                                    <!--<a href="feature.html">Feature</a>-->
+
+                                    <a th:href="${@itemService.getPath(item)}">
+                                        [[${@itemService.getLabelText(item)}]]
+                                    </a>
+                                </th:block>
+                            </li>
+
+                            <li role="presentation"
+                                th:class="${#strings.equalsIgnoreCase(#request.getRequestURI().toString(), '/MAIL')} ? active : _">
+                                <a href="/mail">CONTATTI</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<th:block th:replace="${main}?: _"/>
+
+<!--<hr>-->
+
+<!--start footer-->
+<footer>
+
+    <div class="sub-footer">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-lg-12">
+                    <ul class="social-network">
+                        <li>
+                            <a href="https://www.facebook.com/Fenice-servizi-funebri-per-animali-691226164314198/"
+                               data-placement="top" title="Facebook" style="margin-left:-35px;">
+                                <i class="fa fa-facebook fa-1x"></i>
+                            </a>
+                        </li>
+                        <!--<li><a href="#" data-placement="top" title="Twitter"><i class="fa fa-twitter fa-1x"></i></a>-->
+                        <!--</li>-->
+                        <!--<li><a href="#" data-placement="top" title="Linkedin"><i class="fa fa-linkedin fa-1x"></i></a>-->
+                        <!--</li>-->
+                        <!--<li><a href="#" data-placement="top" title="Pinterest"><i class="fa fa-pinterest fa-1x"></i></a>-->
+                        <!--</li>-->
+                        <!--<li><a href="#" data-placement="top" title="Google plus"><i class="fa fa-google-plus fa-1x"></i></a>-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+
+                <div class="col-lg-12">
+                    <div class="copyright" style="padding-top:10px;">
+                        <a href="/informazioni_editoriali">Informazioni Editoriali</a>
+
+                        <br />
+                        <a href="//www.iubenda.com/privacy-policy/85707710" class="iubenda-white iubenda-embed" title="Privacy Policy">Privacy Policy</a>
+                        <script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "//cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+
+                        <div class="credits">
+                            <!--
+                                All the links in the footer should remain intact.
+                                You can delete the links only if you purchased the pro version.
+                                Licensing information: https://bootstrapmade.com/license/
+                                Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Resi
+                            -->
+                            <a href="/admin">
+                                <i class="fa fa-sign-in"></i>
+                                <span>Sign in</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="col-lg-12">-->
+                    <!--<div class="copyright">-->
+                        <!--<p>&copy;Resi Theme - All right reserved.</p>-->
+                        <!--<div class="credits">-->
+                            <!--&lt;!&ndash;-->
+                                <!--All the links in the footer should remain intact.-->
+                                <!--You can delete the links only if you purchased the pro version.-->
+                                <!--Licensing information: https://bootstrapmade.com/license/-->
+                                <!--Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Resi-->
+                            <!--&ndash;&gt;-->
+                            <!--<a href="/admin">-->
+                                <!--<i class="fa fa-sign-in"></i>-->
+                                <!--<span>Sign in</span>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+            </div>
+        </div>
+    </div>
+</footer>
+<!--end footer-->
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery-2.1.1.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="js/bootstrap.min.js"></script>
+<script src="js/responsive-slider.js"></script>
+<script src="js/wow.min.js"></script>
+<script>wow = new WOW({}).init();</script>
+<script>
+		$(document).ready(function() {
+			$('.url-button').click(function() {
+				var url = $(this).data('url');
+				window.location=url;
+				return false;
+			});
+		});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html xmlns:th="//www.thymeleaf.org" th:remove="tag">
+<div class="container">
+    <div class="row" th:if="${rtl[0].value == false}">
+        <div class="col-md-7">
+            <div class="wow bounceIn animated" data-wow-offset="0" data-wow-delay="0.8s" style="visibility: visible;-webkit-animation-delay: 0.8s; -moz-animation-delay: 0.8s; animation-delay: 0.8s;">
+                <img src="img/2.png" th:src="${image[0][url]} ?: _" alt="" class="img-responsive">
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="wow bounceIn animated" data-wow-offset="0" data-wow-delay="1.3s" style="visibility: visible;-webkit-animation-delay: 1.3s; -moz-animation-delay: 1.3s; animation-delay: 1.3s;">
+                <div class="list-group">
+                    <th:block th:each="featureListItem : ${featureListItems}">
+                        <a class="list-group-item" th:href="${featureListItem.link[0]?.url}">
+                            <h4 class="list-group-item-heading" th:text="${featureListItem.heading[0].value}">Modern interface</h4>
+                            <span class="list-group-item-text" th:utext="${featureListItem.description[0].value}">praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
+                            </span>
+                        </a>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <div class="row" th:if="${rtl[0].value == true}">
+        <div class="col-md-5">
+            <div class="wow bounceIn animated" data-wow-offset="0" data-wow-delay="1.3s" style="visibility: visible;-webkit-animation-delay: 1.3s; -moz-animation-delay: 1.3s; animation-delay: 1.3s;">
+                <div class="list-group">
+                    <th:block th:each="featureListItem : ${featureListItems}">
+                        <a class="list-group-item" th:href="${featureListItem.link[0]?.url}">
+                            <h4 class="list-group-item-heading" th:text="${featureListItem.heading[0].value}">Modern interface</h4>
+                            <span class="list-group-item-text" th:utext="${featureListItem.description[0].value}">praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias
+                            </span>
+                        </a>
+                    </th:block>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="wow bounceIn animated" data-wow-offset="0" data-wow-delay="0.8s" style="visibility: visible;-webkit-animation-delay: 0.8s; -moz-animation-delay: 0.8s; animation-delay: 0.8s;">
+                <img src="img/2.png" th:src="${image[0][url]} ?: _" alt="" class="img-responsive">
+            </div>
+        </div>
+    </div>
+</div>
+</html>

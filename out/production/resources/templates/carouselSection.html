@@ -1,0 +1,66 @@
+<html xmlns:th="//www.thymeleaf.org" th:remove="tag">
+
+<div class="slider">
+    <div id="about-slider">
+        <div id="carousel-slider" class="carousel slide" data-ride="carousel">
+            <!-- Indicators -->
+            <ol class="carousel-indicators visible-xs">
+                <li class="" th:each="carouselItem,carouselItemItr : ${carouselItems}" th:classappend="${carouselItemItr.index == 0} ? active : _" data-target="#carousel-slider" data-slide-to="0"></li>
+            </ol>
+
+            <div class="carousel-inner">
+
+                <div th:each="carouselItem,carouselItemItr : ${carouselItems}" class="item" th:classappend="${carouselItemItr.index == 0} ? active : _">
+                    <!--<img src="img/slide1.jpg" class="img-responsive" alt="">-->
+                    <!--<img th:src="@{/asset/files/{uuid}/{filename}(uuid=${stage.image[0].uuid},fileName=${stage.image[0].fileName})}" class="img-responsive" alt="">-->
+
+                    <img th:src="${carouselItem[image][0][url]}" class="img-responsive" alt="">
+                    <div class="carousel-caption"
+                         th:remove="
+                         ${#strings.isEmpty(carouselItem[title][0]?.value) &&
+                           #strings.isEmpty(carouselItem[subtitle][0]?.value)} ? all : _">
+                        <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.3s" th:if="${!carouselItem[title].empty}">
+                            <h2><span th:text="${carouselItem[title][0]?.value}">Clean & Modern Design Template</span></h2>
+                        </div>
+                        <div class="col-md-10 col-md-offset-1" th:if="${!carouselItem[subtitle].empty}"
+                             th:remove="${#strings.isEmpty(carouselItem[subtitle][0]?.value)} ? all : _">
+                            <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.6s">
+                                <p th:text="${carouselItem[subtitle][0]?.value}">Lorem ipsum dolor sit amet consectetur adipisicing</p>
+                            </div>
+                        </div>
+                        <div class="wow fadeInUp" data-wow-offset="0" data-wow-delay="0.9s">
+                            <form class="form-inline">
+                                <div class="form-group" th:if="${carouselItem[button]?.size() >= 1}">
+                                    <button type="livedemo"
+                                            th:text="${carouselItem[button][0]?.value}"
+                                            th:data-url="${carouselItem[button][0]?.url}"
+                                            name="Live Demo"
+                                            class="btn btn-primary btn-lg url-button"
+                                            required="required">Live Demo</button>
+                                </div>
+                                <div class="form-group" th:if="${carouselItem[button]?.size() >= 2}">
+                                    <button type="getnow"
+                                            th:text="${carouselItem[button][1]?.value}"
+                                            th:data-url="${carouselItem[button][1]?.url}"
+                                            name="Get Now"
+                                            class="btn btn-primary btn-lg url-button"
+                                            required="required">Get Now</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <a class="left carousel-control hidden-xs" href="#carousel-slider" data-slide="prev">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a class=" right carousel-control hidden-xs"href="#carousel-slider" data-slide="next">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        </div> <!--/#carousel-slider-->
+    </div><!--/#about-slider-->
+</div><!--/#slider-->
+</html>
